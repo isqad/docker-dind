@@ -1,0 +1,14 @@
+#!/usr/bin/python
+import argparse
+import os
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--image', action = 'append')
+parser.add_argument('--cache-dir', default = '/images')
+args=parser.parse_args()
+
+for image in args.image:
+    print 'Fetching image: ' + image
+    image_path = args.cache_dir + '/' +  image.replace('/', '-').replace(':', '_') + '.tar'
+    os.system('docker load < %s || true' % (image_path))
+    os.system('(docker pull %s | grep \'Image is up to date\') || docker save %s > %s' % (image, image, image_path))
