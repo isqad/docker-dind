@@ -1,0 +1,9 @@
+#!/bin/sh -ex
+
+wrapdocker docker -v
+
+if [ -z "$(git log --grep ${DRONE_COMMIT})" ]; then
+  echo "Commit ${DRONE_COMMIT} not found in merge commit."
+  echo "Try to restart build."
+  exit 1
+fi
