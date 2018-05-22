@@ -13,4 +13,5 @@ RUN apt-get update -qq \
 RUN curl -L https://github.com/bibendi/dip/releases/download/$DIP_VERSION/dip-Linux-x86_64 > /usr/local/bin/dip \
   && chmod +x /usr/local/bin/dip
 
+ADD prepare-build /usr/local/bin/
 ADD fetch-images /usr/local/bin/
