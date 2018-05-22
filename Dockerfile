@@ -1,6 +1,6 @@
 FROM gitlab/dind
 
-ENV DIP_VERSION 1.0.2
+ENV DIP_VERSION 2.0.0
 
 RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
