@@ -2,8 +2,8 @@
 
 wrapdocker docker -v
 
-if [ -z "$(git log --grep ${DRONE_COMMIT})" ]; then
-  echo "Commit ${DRONE_COMMIT} not found in merge commit."
-  echo "Try to restart build."
+if ! git merge-base --is-ancestor ${DRONE_COMMIT} HEAD; then
+  echo "The commit ${DRONE_COMMIT} has not been found in HEAD."
+  echo "Try to restart a build or open a new pull-request."
   exit 1
 fi
